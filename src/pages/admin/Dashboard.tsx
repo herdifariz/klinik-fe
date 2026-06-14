@@ -121,11 +121,7 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Klinik Dashboard</h1>
-        <p className="text-slate-500">
-          Welcome back! Here is a summary of clinic statistics for the last 30
-          days.
-        </p>
+        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
       </div>
 
       {/* Grid Summary Cards */}
@@ -164,8 +160,8 @@ const DashboardPage: React.FC = () => {
             </span>
           </div>
           {revenueData &&
-          revenueData.byDate &&
-          revenueData.byDate.length > 0 ? (
+            revenueData.byDate &&
+            revenueData.byDate.length > 0 ? (
             <div className="h-64 flex items-end justify-between pt-6 px-4 space-x-2">
               {revenueData.byDate.map((item, idx) => {
                 const maxVal = Math.max(
@@ -317,8 +313,8 @@ const DashboardPage: React.FC = () => {
           </h3>
           <div className="space-y-3">
             {appointmentData &&
-            appointmentData.byDoctor &&
-            appointmentData.byDoctor.length > 0 ? (
+              appointmentData.byDoctor &&
+              appointmentData.byDoctor.length > 0 ? (
               appointmentData.byDoctor.map((doc, idx) => (
                 <div
                   key={doc.doctorId}

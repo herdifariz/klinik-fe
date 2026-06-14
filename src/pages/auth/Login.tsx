@@ -110,6 +110,8 @@ const Login: React.FC = () => {
           )}
         </div>
 
+        <span className='text-sm text-slate-500 block'>Note: Email = admin@klinik.com, Password = admin123</span>
+
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting ? 'Loading...' : 'Sign in'}
         </Button>

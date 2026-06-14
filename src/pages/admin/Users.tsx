@@ -76,6 +76,7 @@ const UsersPage: React.FC = () => {
       fetchUsers();
     } catch (error) {
       console.error('Failed to save user', error);
+      throw error;
     }
   };
 

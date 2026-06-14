@@ -82,7 +82,7 @@ const MedicinesPage: React.FC = () => {
     { header: 'Code', accessor: 'code' as keyof Medicine },
     { header: 'Name', accessor: 'name' as keyof Medicine },
     { header: 'Type', accessor: 'category' as keyof Medicine },
-    { header: 'Stock', accessor: (med: Medicine) => `${med.stock} ${med.unit}` },
+    { header: 'Stock', accessor: (med: Medicine) => `${med.stock} ${med.form}` },
     { header: 'Price', accessor: (med: Medicine) => formatCurrency(med.unitPrice) },
     {
       header: 'Actions',

@@ -51,9 +51,39 @@ export const UserForm: React.FC<UserFormProps> = ({
     },
   });
 
+  const handleFormSubmit = async (values: UserFormValues) => {
+    try {
+      await onSubmit(values);
+    } catch (err: any) {
+      const apiErrors = err.response?.data?.errors;
+      if (apiErrors && Array.isArray(apiErrors)) {
+        apiErrors.forEach((e: any) => {
+          const fieldName = e.field.replace('body.', '');
+          let formField = fieldName;
+          if (fieldName === 'fullName') formField = 'name';
+          
+          form.setError(formField as any, {
+            type: 'server',
+            message: e.message,
+          });
+        });
+      } else {
+        form.setError('root', {
+          type: 'server',
+          message: err.response?.data?.message || 'Failed to save user',
+        });
+      }
+    }
+  };
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4">
+        {form.formState.errors.root && (
+          <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-md text-sm font-medium">
+            {form.formState.errors.root.message}
+          </div>
+        )}
         <FormField
           control={form.control}
           name="name"
